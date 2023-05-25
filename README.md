@@ -21,7 +21,7 @@ I used SCSS, which is compiled with grunt via watch or grunt sass task
 ### JavaScript
 A rather basic script with a class toggle function which is used for the push menu itself and the slide-down sub-menu.
 
-## Things I would like to fix:
+## Things I would like to improve:
 - I have done some basic rules to make the example responsive, so that it is usable at any width.
 - For the sub-menu, I am using a max-height: 500px in css to animate the slide-down, but I would rather have the max-height calculated with JavaScript to smoothen out the transition during slide-up
 - Used hardcoded px values within the menu toggle. Would rather use variables.
