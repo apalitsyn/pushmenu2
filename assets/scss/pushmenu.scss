@@ -1,0 +1,219 @@
+$header-bg: #cbd5e1;
+$body-bg: white;
+$menu-bg: #334155;
+$menu-link-color: #bfdbfe;
+
+$gutter: 20px;
+$menu-width: 250px;
+$menu-padding: 75px;
+$content-width: 960px;
+$nav-link-size: 24px;
+$nav-sublink-size: 16px;
+$transition-duration: .5s;
+
+
+@mixin content-width {
+  max-width: $content-width;
+  margin: 0 auto;
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin transition($type) {
+  transition: $type $transition-duration ease;
+}
+
+@mixin content-behaviour {
+  transform: translateX(0%);
+  @include content-width;
+  @include transition(transform);
+
+  @at-root body.menu-open & {
+    transform: translateX($menu-width);
+    
+    
+    @media only screen and (min-width: 68em) {
+      transform: translateX(calc(#{$menu-width} * 0.7));
+    }
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $body-bg;
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-open {
+  overflow-x: hidden;
+}
+
+.header {
+  background-color: $header-bg;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+
+  &__heading {
+    padding: #{$gutter * 3} $gutter $gutter;
+    @include content-behaviour;
+
+    @media only screen and (min-width: 68em) {
+      padding: $gutter
+    }
+  }
+}
+
+.page-content {
+  padding: $gutter;
+  @include content-behaviour;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  position: fixed;
+  z-index: 20;
+  top: $gutter;
+  left: $gutter;
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background-color: $menu-bg;
+  @include transition(transform);
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: $menu-link-color;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:before {
+    width: 20px;
+    height: 2px;
+  }
+
+  &:after {
+    height: 20px;
+    width: 2px;
+  }
+
+  @at-root body.menu-open & {
+    background-color: $menu-link-color;
+    transform: rotate(45deg);
+
+    &:before, &:after {
+      background-color: $menu-bg;
+    }
+  }
+}
+
+.pushmenu {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: $menu-padding $gutter $gutter;
+  background-color: $menu-bg;
+  transform: translateX(-100%);
+  @include transition(transform);
+
+  @media only screen and (min-width: 48em) {
+    width: $menu-width;
+  }
+
+  @at-root body.menu-open & {
+    transform: translateX(0%);  
+  }
+
+  &__links, &__sublinks {
+    @include reset-list;
+      & > li {
+        position: relative;
+      }
+  }
+
+  &__sublinks {
+    position: relative;
+    padding-left: $gutter / 2 ;
+    overflow-y: hidden;
+    max-height: 0;
+    margin-top: -#{$gutter / 2};
+    @include transition(all);
+
+    &--open {
+      max-height: 500px;
+      margin-top: 0;
+    }
+  }
+
+  &__link, &__sublink {
+    display: block;
+    color: $menu-link-color;
+    font-weight: 700;
+    font-size: $nav-link-size;
+    text-decoration: none;
+    margin-top: $gutter / 2;
+    margin-bottom: $gutter / 2;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__link-trigger {
+    position: absolute;
+    height: $gutter;
+    width: $gutter;
+    top: 0;
+    right: 0;
+    transform: rotate(-90deg);
+    transition: all .2s ease;
+
+    &--open {
+      transform: rotate(0deg);
+    }
+    
+    &:after {
+      position: absolute;
+      content: "";
+      width: 0; 
+      height: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); 
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid $menu-link-color;
+      transition: all .2s ease;
+    }
+
+    &:hover:after {
+      border-left-width: 7px;
+      border-right-width: 7px;
+      border-top-width: 7px;
+    }
+  }
+
+  &__sublink {
+    font-size: $nav-sublink-size;
+  }
+}
