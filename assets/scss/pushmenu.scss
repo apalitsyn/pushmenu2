@@ -195,6 +195,10 @@ body {
     transform: rotate(-90deg);
     transition: all .2s ease;
 
+    &--sub {
+      top: 0;
+    }
+
     &--open {
       transform: rotate(0deg);
     }
