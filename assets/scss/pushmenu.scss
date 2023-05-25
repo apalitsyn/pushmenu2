@@ -94,7 +94,7 @@ body {
   height: 30px;
   border: 0;
   background-color: $menu-bg;
-  @include transition(transform);
+  @include transition(all);
 
   &:before, &:after {
     content: "";
@@ -119,6 +119,10 @@ body {
   @at-root body.menu-open & {
     background-color: $menu-link-color;
     transform: rotate(45deg);
+    box-shadow:
+    0 0 10px 10px $menu-bg,
+    0 0 10px 10px $menu-bg,
+    0 0 10px 10px $menu-bg;
 
     &:before, &:after {
       background-color: $menu-bg;
