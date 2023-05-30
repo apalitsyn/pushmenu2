@@ -3,8 +3,13 @@
   <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
       <title>Push menu</title>
+
+      <meta name="description" content="Push menu test">
+      <meta name="keywords" content="push, menu, test">
+      <meta name="author" content="Anton Palitsyn">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
       <link rel="preconnect" href="//fonts.googleapis.com">
       <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
@@ -22,14 +27,14 @@
         </li>
         <li>
           <a href="#" class="pushmenu__link">Link 3</a>
-          <span class="pushmenu__link-trigger js-sub-arrow"></span>
+          <button class="pushmenu__link-trigger js-sub-arrow" aria-label="Open/close Link 3 sub-level"></button>
           <ul class="pushmenu__sublinks">
             <li>
               <a href="#" class="pushmenu__sublink">Sub-Link 1</a>
             </li>
             <li>
               <a href="#" class="pushmenu__sublink">Sub-Link 2</a>
-              <span class="pushmenu__link-trigger pushmenu__link-trigger--sub js-sub-arrow"></span>
+              <button class="pushmenu__link-trigger pushmenu__link-trigger--sub js-sub-arrow" aria-label="Open/close Sub link 2 sub-level"></button>
               <ul class="pushmenu__sublinks">
                 <li>
                   <a href="#" class="pushmenu__sublink">Sub-Sub-Link 1</a>
@@ -52,7 +57,7 @@
         </li>
         <li>
           <a href="#" class="pushmenu__link">Link 6</a>
-          <span class="pushmenu__link-trigger js-sub-arrow"></span>
+          <button class="pushmenu__link-trigger js-sub-arrow" aria-label="Open/close Link 6 sub-level"></button>
           <ul class="pushmenu__sublinks">
             <li>
               <a href="#" class="pushmenu__sublink">Sub-Link 1</a>
